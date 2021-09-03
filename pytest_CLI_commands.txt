@@ -20,3 +20,6 @@ Re-run all tests, starting with last failed:
 
 You can combine CLI options together:
  pytest --ff -x -v
+
+Reporting with pytest-reporter-html1:
+ pytest --template=html1/index.html --report=report.html

@@ -17,13 +17,13 @@ def test_login(playwright: Playwright) -> None:
     page.goto("https://symonstorozhenko.wixsite.com/website-1")
     page.set_default_timeout(3000)
 
-    print(f"password is ->{PASSWORD}")
     # Act - When/And
-    page.click("button:has-text('Log In')", timeout=2000)
-    # page.click("text=Log In")
+    # page.click("button:has-text('Log In')", timeout=2000)
+    time.sleep(2)
+    page.click("text=Log In", timeout=2000)
     # page.click("'Log In'", timeout=2000)
-    # page.click("[data-testid='signUp.switchToSignUp']")
-    page.click(":nth-match(:text('Log In'), 2)", timeout=2000)
+    page.click("[data-testid='signUp.switchToSignUp']")
+    # page.click(":nth-match(:text('Log In'), 2)", timeout=2000)
     page.click("[data-testid='switchToEmailLink'] >> [data-testid='buttonElement']")
     # page.click("[data-testid='siteMembers.container'] input[type='email']")
     # page.fill("[data-testid='siteMembers.container'] input[type='email']", "symon.storozhenko@gmail.com")

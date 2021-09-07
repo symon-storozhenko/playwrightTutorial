@@ -22,6 +22,7 @@ def test_about_us_section_verbiage(playwright):
     # browser.close()
 
 
+@pytest.mark.skip(reason="just skipped")
 @pytest.mark.regression
 def test_about_us_section_verbiage_2(playwright) -> None:
     # Assess - Given

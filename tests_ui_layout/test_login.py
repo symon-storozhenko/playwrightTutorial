@@ -23,8 +23,7 @@ def test_login(playwright: Playwright) -> None:
     # page.click("text=Log In")
     page.click("'Log In'", timeout=2000)
     # page.click("[data-testid='signUp.switchToSignUp']")
-
-    page.click(":nth-match(:text('Log In'), 2)")
+    page.click(":nth-match(:text('Log In'), 2)", timeout=2000)
     page.click("[data-testid='switchToEmailLink'] >> [data-testid='buttonElement']")
     # page.click("[data-testid='siteMembers.container'] input[type='email']")
     # page.fill("[data-testid='siteMembers.container'] input[type='email']", "symon.storozhenko@gmail.com")

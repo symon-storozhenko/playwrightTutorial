@@ -17,6 +17,7 @@ def test_login(playwright: Playwright) -> None:
     page.goto("https://symonstorozhenko.wixsite.com/website-1")
     page.set_default_timeout(3000)
 
+    print(f"password is ->{PASSWORD}")
     # Act - When/And
     # page.click("button:has-text('Log In')", timeout=2000)
     # page.click("text=Log In")

@@ -1,7 +1,7 @@
 import os
 import time
 
-from playwright.sync_api import Playwright, sync_playwright as playwright
+from playwright.sync_api import Playwright, sync_playwright
 import pytest
 
 # PASSWORD = os.environ['PASSWORD']

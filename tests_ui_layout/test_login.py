@@ -24,7 +24,7 @@ def test_login(playwright: Playwright) -> None:
 
     # Act - When/And
     # page.click("button:has-text('Log In')", timeout=2000)
-    time.sleep(1)
+    time.sleep(2)
     page.click("text=Log In", timeout=2000)
     # page.click("'Log In'", timeout=2000)
     page.click("[data-testid='signUp.switchToSignUp']")

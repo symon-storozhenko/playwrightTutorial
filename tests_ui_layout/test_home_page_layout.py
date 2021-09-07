@@ -6,7 +6,7 @@ import pytest
 @pytest.mark.integration
 def test_about_us_section_verbiage(playwright):
     # Assess - Given
-    browser = playwright.chromium.launch(headless=False, slow_mo=500)
+    browser = playwright.chromium.launch(headless=True, slow_mo=500)
     context = browser.new_context()
     # Open new page
     page = context.new_page()
@@ -26,7 +26,7 @@ def test_about_us_section_verbiage(playwright):
 @pytest.mark.regression
 def test_about_us_section_verbiage_2(playwright) -> None:
     # Assess - Given
-    browser = playwright.chromium.launch(headless=False, slow_mo=500)
+    browser = playwright.chromium.launch(headless=True, slow_mo=500)
     context = browser.new_context()
     # Open new page
     page = context.new_page()

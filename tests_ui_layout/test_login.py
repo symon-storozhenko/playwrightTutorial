@@ -10,7 +10,7 @@ PASSWORD = os.environ['PASSWORD']
 @pytest.mark.regression
 def test_login(playwright: Playwright) -> None:
     # Assess - Given
-    browser = playwright.webkit.launch(headless=True, slow_mo=500)
+    browser = playwright.chromium.launch()
     context = browser.new_context()
     # Open new page
     page = context.new_page()

@@ -4,7 +4,12 @@ import time
 from playwright.sync_api import Playwright, sync_playwright
 import pytest
 
-PASSWORD = os.environ['PASSWORD']
+try:
+    PASSWORD = os.environ['PASSWORD']
+except KeyError:
+    import config
+    PASSWORD = config.PASSWORD
+
 
 @pytest.mark.smoke
 @pytest.mark.regression
@@ -19,7 +24,7 @@ def test_login(playwright: Playwright) -> None:
 
     # Act - When/And
     # page.click("button:has-text('Log In')", timeout=2000)
-    time.sleep(2)
+    time.sleep(0.5)
     page.click("text=Log In", timeout=2000)
     # page.click("'Log In'", timeout=2000)
     page.click("[data-testid='signUp.switchToSignUp']")

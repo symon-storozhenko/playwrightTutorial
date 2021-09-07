@@ -1,5 +1,5 @@
 from pom.home_page_elements import HomePage
-from playwright.sync_api import Playwright, sync_playwright
+from playwright.sync_api import Playwright, sync_playwright as playwright
 import pytest
 
 

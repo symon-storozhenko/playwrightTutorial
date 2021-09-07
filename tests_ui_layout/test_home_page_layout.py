@@ -3,6 +3,7 @@ from playwright.sync_api import Playwright, sync_playwright
 import pytest
 
 
+@pytest.mark.skip(reason="just skipped")
 @pytest.mark.integration
 def test_about_us_section_verbiage(playwright):
     # Assess - Given

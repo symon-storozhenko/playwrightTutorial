@@ -4,8 +4,7 @@ import time
 from playwright.sync_api import Playwright, sync_playwright
 import pytest
 
-# PASSWORD = os.environ['PASSWORD']
-
+PASSWORD = os.environ['PASSWORD']
 
 @pytest.mark.smoke
 @pytest.mark.regression
@@ -28,7 +27,7 @@ def test_login(playwright: Playwright) -> None:
     # page.fill("[data-testid='siteMembers.container'] input[type='email']", "symon.storozhenko@gmail.com")
     page.fill('input:below(:text("Email"))', "symon.storozhenko@gmail.com")
     page.press("[data-testid='siteMembers.container'] >> input[type='email']", "Tab")
-    page.fill("input[type='password']", "test123")
+    page.fill("input[type='password']", PASSWORD)
     page.click("[data-testid='submit'] >> [data-testid='buttonElement']")
     page.click("[aria-label='symon.storozhenko account menu']")
 

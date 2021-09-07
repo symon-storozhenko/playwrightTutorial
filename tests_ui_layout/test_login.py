@@ -19,9 +19,9 @@ def test_login(playwright: Playwright) -> None:
 
     print(f"password is ->{PASSWORD}")
     # Act - When/And
-    # page.click("button:has-text('Log In')", timeout=2000)
+    page.click("button:has-text('Log In')", timeout=2000)
     # page.click("text=Log In")
-    page.click("'Log In'", timeout=2000)
+    # page.click("'Log In'", timeout=2000)
     # page.click("[data-testid='signUp.switchToSignUp']")
     page.click(":nth-match(:text('Log In'), 2)", timeout=2000)
     page.click("[data-testid='switchToEmailLink'] >> [data-testid='buttonElement']")

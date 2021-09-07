@@ -1,21 +1,25 @@
 import os
 import time
 
-from playwright.sync_api import Playwright, sync_playwright
+from playwright.sync_api import Playwright
 import pytest
 
+
+remote_vs_local_mode = True
 try:
     PASSWORD = os.environ['PASSWORD']
+    remote_vs_local_mode = True
 except KeyError:
-    import config
-    PASSWORD = config.PASSWORD
+    from utils import secret_config
+    PASSWORD = secret_config.PASSWORD
+    remote_vs_local_mode = False
 
 
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_login(playwright: Playwright) -> None:
     # Assess - Given
-    browser = playwright.chromium.launch()
+    browser = playwright.chromium.launch(headless=remote_vs_local_mode)
     context = browser.new_context()
     # Open new page
     page = context.new_page()

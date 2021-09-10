@@ -5,20 +5,21 @@ import pytest
 
 @pytest.mark.smoke
 @pytest.mark.regression
-def test_login(playwright: Playwright) -> None:
+def test_login(set_up) -> None:
     # Assess - Given
-    browser = playwright.chromium.launch(headless=False, slow_mo=500)
-    context = browser.new_context()
-    # Open new page
-    page = context.new_page()
-    page.goto("https://symonstorozhenko.wixsite.com/website-1")
-    page.set_default_timeout(3000)
+    page = set_up
 
     # Act - When/And
-    page.click("button:has-text('Log In')", timeout=2000)
-    # page.click("text=Log In")
-    # page.click("'Log In'", timeout=2000)
-    page.click("[data-testid='signUp.switchToSignUp']")
+    # Click button:has-text("Log In")
+    login_issue = True
+    while login_issue:
+        if not page.is_visible("[data-testid=\"signUp.switchToSignUp\"]"):
+            page.click("button:has-text(\"Log In\")")
+        else:
+            login_issue = False
+        time.sleep(0.1)
+    # Click [data-testid="signUp.switchToSignUp"]
+    page.click("[data-testid=\"signUp.switchToSignUp\"]", timeout=2000)
     # page.click(":nth-match(:text('Log In'), 2)", timeout=2000)
     page.click("[data-testid='switchToEmailLink'] >> [data-testid='buttonElement']")
     # page.click("[data-testid='siteMembers.container'] input[type='email']")
@@ -34,7 +35,4 @@ def test_login(playwright: Playwright) -> None:
 
 
     # ---------------------
-    context.close()
-    browser.close()
-
 

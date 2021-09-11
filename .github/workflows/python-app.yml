@@ -26,7 +26,5 @@ jobs:
           pip install playwright
     - name: Ensure browsers are installed
       run: python -m playwright install
-    - name: Install operating system dependencies
-      run: python -m playwright install-deps
     - name: Run your tests
       run: pytest

@@ -1,5 +1,6 @@
 import time
 import pytest
+from playwright.sync_api import Playwright, sync_playwright
 
 
 @pytest.fixture(scope="function")

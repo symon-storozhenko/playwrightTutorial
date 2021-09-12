@@ -10,13 +10,13 @@ except KeyError:
     PASSWORD = utils.secret_config.PASSWORD
 
 
-@pytest.fixture(scope="session")
-def set_up(browser):
+@pytest.fixture()
+def set_up(page):
     # Assess - Given
     # browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
+    # context = browser.new_context()
     # # Open new page
-    page = context.new_page()
+    # page = context.new_page()
     page.goto("https://symonstorozhenko.wixsite.com/website-1")
     page.set_default_timeout(3000)
 
@@ -24,7 +24,7 @@ def set_up(browser):
     page.close()
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture()
 def login_set_up(set_up):
     # Assess - Given
     # browser = playwright.chromium.launch(headless=False)

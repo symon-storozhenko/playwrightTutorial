@@ -16,5 +16,3 @@ def test_logged_user_can_view_my_orders_menu(login_set_up) -> None:
     assert page.is_visible("text=My Orders")
 
 
-    # ---------------------
-

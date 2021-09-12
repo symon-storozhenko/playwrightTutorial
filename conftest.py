@@ -1,7 +1,7 @@
 import os
 import time
 import pytest
-from utils import secret_config
+# from utils import secret_config
 
 
 @pytest.fixture(scope="function")

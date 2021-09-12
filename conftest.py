@@ -1,3 +1,4 @@
+import os
 import time
 import pytest
 from utils import secret_config
@@ -42,7 +43,8 @@ def login_set_up(set_up):
     # page.fill("[data-testid='siteMembers.container'] input[type='email']", "symon.storozhenko@gmail.com")
     page.fill('input:below(:text("Email"))', "symon.storozhenko@gmail.com")
     page.press("[data-testid='siteMembers.container'] >> input[type='email']", "Tab")
-    page.fill("input[type='password']", secret_config.Password.PASSWORD)
+    # page.fill("input[type='password']", secret_config.Password.PASSWORD)
+    page.fill("input[type='password']", os.environ['PASSWORD'])
     page.click("[data-testid='submit'] >> [data-testid='buttonElement']")
 
     yield page

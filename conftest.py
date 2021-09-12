@@ -1,10 +1,10 @@
-import os
 import time
 import pytest
-# from utils import secret_config
+
+import utils.secret_config
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="session")
 def set_up(browser):
     # Assess - Given
     # browser = playwright.chromium.launch(headless=False)
@@ -18,7 +18,7 @@ def set_up(browser):
     page.close()
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="session")
 def login_set_up(set_up):
     # Assess - Given
     # browser = playwright.chromium.launch(headless=False)
@@ -43,8 +43,7 @@ def login_set_up(set_up):
     # page.fill("[data-testid='siteMembers.container'] input[type='email']", "symon.storozhenko@gmail.com")
     page.fill('input:below(:text("Email"))', "symon.storozhenko@gmail.com")
     page.press("[data-testid='siteMembers.container'] >> input[type='email']", "Tab")
-    # page.fill("input[type='password']", secret_config.Password.PASSWORD)
-    page.fill("input[type='password']", os.environ['PASSWORD'])
+    page.fill("input[type='password']", utils.secret_config.PASSWORD)
     page.click("[data-testid='submit'] >> [data-testid='buttonElement']")
 
     yield page

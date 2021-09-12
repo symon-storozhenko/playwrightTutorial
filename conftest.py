@@ -2,7 +2,12 @@ import os
 import time
 import pytest
 
-# import utils.secret_config
+
+try:
+    PASSWORD = os.environ['PASSWORD']
+except KeyError:
+    import utils.secret_config
+    PASSWORD = utils.secret_config.PASSWORD
 
 
 @pytest.fixture(scope="session")
@@ -44,8 +49,7 @@ def login_set_up(set_up):
     # page.fill("[data-testid='siteMembers.container'] input[type='email']", "symon.storozhenko@gmail.com")
     page.fill('input:below(:text("Email"))', "symon.storozhenko@gmail.com")
     page.press("[data-testid='siteMembers.container'] >> input[type='email']", "Tab")
-    # page.fill("input[type='password']", utils.secret_config.PASSWORD)
-    page.fill("input[type='password']", os.environ['PASSWORD'])
+    page.fill("input[type='password']", PASSWORD)
     page.click("[data-testid='submit'] >> [data-testid='buttonElement']")
 
     yield page

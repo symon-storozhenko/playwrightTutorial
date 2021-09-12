@@ -2,7 +2,7 @@ import os
 import time
 import pytest
 
-import utils.secret_config
+# import utils.secret_config
 
 
 @pytest.fixture(scope="session")

@@ -25,6 +25,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest-playwright
         python -m pip install playwright
+        python -m pip install pytest-xdist
+         python -m pip install pytest-reporter-html1
     - name: Ensure Playwright browsers are installed
       run: python -m playwright install chromium
     - name: Lint with flake8
@@ -37,4 +39,5 @@ jobs:
       env:
         PASSWORD: ${{secrets.PASSWORD}}
       run: |
-        pytest
+        pytest --template=html1/index.html --report=GItHubActions_report.html --screenshot=only-on-failure
+        --video=retain-on-failure n=3

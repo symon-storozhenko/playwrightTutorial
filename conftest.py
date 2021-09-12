@@ -1,5 +1,6 @@
 import time
 import pytest
+from utils import secret_config
 
 
 @pytest.fixture(scope="function")
@@ -41,7 +42,7 @@ def login_set_up(set_up):
     # page.fill("[data-testid='siteMembers.container'] input[type='email']", "symon.storozhenko@gmail.com")
     page.fill('input:below(:text("Email"))', "symon.storozhenko@gmail.com")
     page.press("[data-testid='siteMembers.container'] >> input[type='email']", "Tab")
-    page.fill("input[type='password']", 'test123')
+    page.fill("input[type='password']", secret_config.Password.PASSWORD)
     page.click("[data-testid='submit'] >> [data-testid='buttonElement']")
 
     yield page

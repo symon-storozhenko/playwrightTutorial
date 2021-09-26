@@ -2,12 +2,16 @@ import os
 import time
 import pytest
 
+headless_bool = True
+slowmo_value = 0
 
 try:
     PASSWORD = os.environ['PASSWORD']
 except KeyError:
     import utils.secret_config
     PASSWORD = utils.secret_config.PASSWORD
+    headless_bool = False
+    slowmo_value = 300
 
 
 @pytest.fixture()
@@ -24,15 +28,15 @@ def set_up(page):
     page.close()
 
 
-@pytest.fixture()
-def login_set_up(set_up):
+@pytest.fixture(scope='session')
+def context_creation(playwright):
     # Assess - Given
-    # browser = playwright.chromium.launch(headless=False)
-    # context = browser.new_context()
+    browser = playwright.chromium.launch(headless=headless_bool, slow_mo=slowmo_value)
+    context = browser.new_context()
     # # Open new page
-    # page = context.new_page()
-
-    page = set_up
+    page = context.new_page()
+    page.goto("https://symonstorozhenko.wixsite.com/website-1")
+    page.set_default_timeout(3000)
 
     login_issue = True
     while login_issue:
@@ -52,7 +56,37 @@ def login_set_up(set_up):
     page.fill("input[type='password']", PASSWORD)
     page.click("[data-testid='submit'] >> [data-testid='buttonElement']")
 
+    # Save storage state into the file.
+    storage = context.storage_state(path="state.json")
+
+    # Create a new context with the saved storage state.
+
+    yield context
+    # time.sleep(5)
+
+
+@pytest.fixture()
+def login_set_up(context_creation, browser):
+    context = browser.new_context(storage_state="state.json")
+    page = context.new_page()
+    page.goto("https://symonstorozhenko.wixsite.com/website-1")
+    page.set_default_timeout(3000)
+
     yield page
+    # time.sleep(3)
+    page.close()
+
+
+# @pytest.fixture()
+# def login_set_up(context_creation):
+#     context = context_creation
+#     page = context.new_page()
+#     page.goto("https://symonstorozhenko.wixsite.com/website-1")
+#     page.set_default_timeout(3000)
+#
+#     yield page
+#     time.sleep(3)
+#     page.close()
 
 
 @pytest.fixture

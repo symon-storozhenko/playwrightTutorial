@@ -2,6 +2,10 @@ from pom.home_page_elements import HomePage
 from playwright.sync_api import Playwright, sync_playwright
 import pytest
 
+
+from utils.secret_config import PASSWORD
+
+
 @pytest.mark.integration
 def test_about_us_section_verbiage(login_set_up) -> None:
     # Assess - Given
